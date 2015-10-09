@@ -116,7 +116,9 @@ class ImperaviRedactorWidget extends CInputWidget
 			->registerPackage(self::PACKAGE_ID)
 			->registerScript(
 				$this->id,
-				'jQuery(' . $selector . ').redactor(' . $options . ');',
+                'if (!$.browser.msie || ($.browser.msie && (parseInt($.browser.version, 10) > 8))) {
+                    jQuery(' . $selector . ').redactor(' . $options . ');
+                }',
 				CClientScript::POS_READY
 			);
 
